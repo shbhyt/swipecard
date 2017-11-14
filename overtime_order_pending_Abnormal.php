@@ -781,7 +781,12 @@
 								WHERE
 									DATE_FORMAT(a.swipecardtime, '%Y-%m-%d') = '".$SDate."'
                                     and a.swipecardtime2 is null
-									AND b.isOnWork = 0									
+									AND b.isOnWork = 0	
+									and a.`WorkshopNo` = '".$WorkshopNo."'
+AND a.`rc_no` = '".$RC_NO."' 
+AND a.checkstate IN ('0', '9')
+AND b.costid IN ($cch)
+AND c.`class_no` = '".$Shift."'				
 								)
 						UNION
 								(SELECT
@@ -810,6 +815,11 @@
 								DATE_FORMAT(a.swipecardtime2, '%Y-%m-%d') = '".$SDate."'
 								and a.swipecardtime is null and shift='D'
 								AND b.isOnWork = 0
+								and a.`WorkshopNo` = '".$WorkshopNo."'
+AND a.`rc_no` = '".$RC_NO."' 
+AND a.checkstate IN ('0', '9')
+AND b.costid IN ($cch)
+AND c.`class_no` = '".$Shift."'
 								)
 							UNION
 								(SELECT
@@ -837,22 +847,27 @@
 							WHERE
 								DATE_FORMAT(a.swipecardtime2, '%Y-%m-%d') = DATE_ADD('".$SDate."',INTERVAL + 1 DAY) 
 								and a.swipecardtime is null and shift='N'
-								AND b.isOnWork = 0								
+								AND b.isOnWork = 0	
+								and a.`WorkshopNo` = '".$WorkshopNo."'
+AND a.`rc_no` = '".$RC_NO."' 
+AND a.checkstate IN ('0', '9')
+AND b.costid IN ($cch)
+AND c.`class_no` = '".$Shift."'							
 							) 
 							) t 
-							where t.`WorkshopNo` = '".$WorkshopNo."' 
-                                and t.`rc_no` = '".$RC_NO."' 
-								AND t.checkstate IN ('0', '9')
-								AND t.costid IN ($cch)";								
+
+								" ;
+
+
                                         
-        if($Shift=="")
-            $employee_overtime_sql .= "and t.`class_no` is null ";
-        else
-            $employee_overtime_sql .= "and t.`class_no`='".$Shift."'  ";
+//        if($Shift=="")
+//            $employee_overtime_sql .= "and t.`class_no` is null ";
+//        else
+//            $employee_overtime_sql .= "and t.`class_no`='".$Shift."'  ";
             
         $employee_overtime_sql .= "order by t.depid,t.id ";
 		
-    		echo $employee_overtime_sql;
+    		//echo $employee_overtime_sql;
 		$interval_sql = "select class_start,rest_start1,rest_end1,rest_start2,rest_end2,class_end,overtime_start from `classno` where class_no='$Shift'";
 		//echo $interval_sql.'<br>';
 		$timeset_row = $mysqli->query($interval_sql);
