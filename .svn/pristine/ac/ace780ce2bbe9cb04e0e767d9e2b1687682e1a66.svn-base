@@ -1,0 +1,261 @@
+<?php
+set_time_limit(0);
+session_start();
+$access = $_SESSION["permission"];
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Insert title here</title>
+    <script src="assets/js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+<?php
+
+include("mysql_config.php");
+
+$timeCal = $_POST['timeCal'];
+$timeType = $_POST['timeType'];
+$workshopNo = $_POST['workshopNo'];
+$rC_NO = $_POST['rC_NO'];
+$item_No = $_POST['item_No'];
+
+$assistant_id = $_SESSION['assistant_id'];
+
+
+//$mysqli_free_result($cid_rows);
+
+$person_sql = "select * from assistant_data where application_id='$assistant_id'";
+
+//echo $person_sql."<Br>";
+
+$zhuli_rows = $mysqli->query($person_sql);
+while ($row = $zhuli_rows->fetch_assoc()) {
+    $application_person = $row['application_person'];
+    $application_id = $row['application_id'];
+    $application_dep = $row['application_dep'];
+    $application_tel = $row['application_tel'];
+}
+mysqli_free_result($zhuli_rows);
+
+if (strcmp($application_person, "") <= 0) {
+    echo "alert(\"當前登錄線長或助理登錄信息缺失，請嘗試更換電腦，或者重新登錄！\");\n";
+    return false;
+}
+
+if ($_POST['workcontent']) {
+    $WorkContent = $_POST['workcontent'];
+} else {
+    $WorkContent = $item_No . "_" . $rC_NO;
+}
+//echo "workContent: ".$WorkContent;
+$calHour = $_POST['calHour'];
+$calInterval = $_POST['calInterval'];
+$checkValue = $_POST['dropId'];
+$ids = $_POST['ids'];
+$names = $_POST['names'];
+$depname = $_POST['depname'];
+$costids = $_POST['costids'];
+$directs = $_POST['directs'];
+$shift = $_POST['shift'];
+$yds = $_POST['ydss'];
+$depids = $_POST['depids'];
+
+//	echo "calHour:".count($calHour);
+
+$a = array();
+// var_dump($checkValue);
+// echo count($checkValue);
+for ($i = 0; $i < count($checkValue); $i++) {
+    $a[$i][0] = $checkValue[$i];
+    $a[$i][1] = $ids[$i];
+    $a[$i][2] = $names[$i];
+    $a[$i][3] = $depids[$i];
+    $a[$i][4] = $depname[$i];
+    $a[$i][5] = $calInterval[$i];
+    $a[$i][6] = $calHour[$i];
+
+    if ($calHour[$i] == 0) {
+        echo "alert(\"工時小於等於0，有誤，請重新選擇加班人員！\");\n";
+        return false;
+    }
+    $a[$i][7] = $costids[$i];
+    $a[$i][8] = $directs[$i];
+//			if($timeCal==1&&$timeType==2&&$calHour[$i]>2){
+//			    $exception=1;
+//            }elseif ($timeCal==1&&$timeType==2&&$calHour<=2){
+//			    $exception=0;
+//            }
+//
+    if ($timeType == 1 && $calHour[$i] > 2) {
+        if ($calHour[$i] == 99) {
+            $exception = 2;
+            $a[$i][6] = 0;
+        } else {
+            $exception = 1;
+        }
+
+    } else if (($timeType == 2 || $timeType == 3) && $calHour[$i] > 10) {
+        if ($calHour[$i] == 99) {
+            $exception = 2;
+            $a[$i][6] = 0;
+        } else {
+            $exception = 1;
+        }
+    }//调班判断逻辑，选取时间为正常班，加班类型选2或3，此时加班时数>2时会抛异常，<=2会正常抛转
+    else if ($timeCal == 1 && ($timeType == 2 || $timeType == 3) && $calHour[$i] > 2) {
+        if ($calHour[$i] == 99) {
+            $exception = 2;
+            $a[$i][6] = 0;
+        } else {
+            $exception = 1;
+        }
+
+    } else {
+        $exception = 0;
+    }
+
+    $a[$i][9] = $exception;
+
+    if ($calHour[$i] == 99) {
+        $calHour[$i] = 0;
+    }
+
+}
+// var_dump($calHour);
+// exit;
+//判断人员是否是管控部门
+// $costids = $_POST['costids'];
+
+$costid_sql = "select depid from a2_dept";
+//echo $costid_sql;
+$cid_rows = $mysqli->query($costid_sql);
+$ar = array();
+$islmt = "";
+while ($row = $cid_rows->fetch_assoc()) {
+    $ar[] = $row['depid'];
+}
+
+for ($i = 0; $i < count($checkValue); $i++) {
+    //for ($j = 0; $j < count($costids); $j++) {
+    if (in_array($costids[$i], $ar) || in_array($depids[$i], $ar)) {
+        $islmt = 'Y';
+    } else {
+        $islmt = 'N';
+    }
+    $update_sql = "update testswipecardtime set CheckState = '1',overtimeCal='" . $timeCal . "',overtimeType='" . $timeType . "' where RecordId = '" . $a[$i][0] . "'";
+    $cch = "insert into notes_overtime_state (id,name,depid,depname,overtimeInterval,overtimeHours,costID,
+		        	Direct,isException,overtimeDate,shift,overtimeType,WorkshopNo,RC_NO,PRIMARY_ITEM_NO,WorkContent,application_person, application_id,
+       		    	application_dep, is_lmt,application_tel) 
+			        value (";
+    for ($j = 1; $j <= 9; $j++) {
+        $cch .= "'" . $a[$i][$j] . "',";
+    }
+    $cch .= "'" . $yds . "',";
+    $cch .= "'" . $shift . "',";
+    $cch .= "'" . $timeType . "',";
+    $cch .= "'" . $workshopNo . "',";
+    $cch .= "'" . $rC_NO . "',";
+    $cch .= "'" . $item_No . "',";
+    $cch .= "'" . $WorkContent . "',";
+    $cch .= "'" . $application_person . "',";
+    $cch .= "'" . $application_id . "',";
+    $cch .= "'" . $application_dep . "',";
+    $cch .= "'" . $islmt . "',";
+    $cch .= "'" . $application_tel . "')";
+    $insert_sql = $cch;
+
+    $cch = '';
+//
+    //}
+//        $update_sql = "update testswipecardtime set CheckState = '1',overtimeCal='".$timeCal."',overtimeType='".$timeType."' where RecordId = '".$a[$i][0]."'";
+//        $cch = "insert into notes_overtime_state (id,name,depid,depname,overtimeInterval,overtimeHours,costID,
+//		        	Direct,isException,overtimeDate,shift,overtimeType,WorkshopNo,RC_NO,PRIMARY_ITEM_NO,WorkContent,application_person, application_id,
+//       		    	application_dep, is_lmt,application_tel)
+//			        value (";
+//        for($j=1;$j<=9;$j++){
+//            $cch .= "'".$a[$i][$j]."',";
+//        }
+//        $cch .= "'".$yds."',";
+//        $cch .= "'".$shift."',";
+//        $cch .= "'".$timeType."',";
+//        $cch .= "'".$workshopNo."',";
+//        $cch .= "'".$rC_NO."',";
+//        $cch .= "'".$item_No."',";
+//        $cch .= "'".$WorkContent."',";
+//        $cch .= "'".$application_person."',";
+//        $cch .= "'".$application_id."',";
+//        $cch .= "'".$application_dep."',";
+//        $cch .= "'".$islmt."',";
+//        $cch .= "'".$application_tel."')";
+//        $insert_sql = $cch;
+//
+//        $cch = '';
+
+    $overTime_sql = "SELECT * FROM `notes_overtime_state` WHERE id='" . $a[$i][1] . "' and overTimeDate='" . $yds . "'";
+    // echo $overTime_sql."<br>";
+    $result = $mysqli->query($overTime_sql);
+    $num_rows = mysqli_num_rows($result);
+    // echo "$num_rows Rows\n";
+    mysqli_free_result($overTime_rows);
+    $update_rows = $mysqli->query($update_sql);
+    if ($num_rows == 0) {
+        //	echo $update_sql."<br>";
+        //   echo $insert_sql."<br>";
+
+        $insert_rows = $mysqli->query($insert_sql);
+    }
+}
+//end of 判断人员是否是管控部门
+
+/*for($i=0;$i<count($checkValue);$i++){
+    $update_sql = "update testswipecardtime set CheckState = '1',overtimeCal='".$timeCal."',overtimeType='".$timeType."' where RecordId = '".$a[$i][0]."'";
+    $cch = "insert into notes_overtime_state (id,name,depid,depname,overtimeInterval,overtimeHours,costID,
+            Direct,isException,overtimeDate,shift,overtimeType,WorkshopNo,RC_NO,PRIMARY_ITEM_NO,WorkContent,application_person, application_id,
+               application_dep, is_lmt,application_tel)
+            value (";
+    for($j=1;$j<=9;$j++){
+        $cch .= "'".$a[$i][$j]."',";
+    }
+    $cch .= "'".$yds."',";
+    $cch .= "'".$shift."',";
+    $cch .= "'".$timeType."',";
+    $cch .= "'".$workshopNo."',";
+    $cch .= "'".$rC_NO."',";
+    $cch .= "'".$item_No."',";
+    $cch .= "'".$WorkContent."',";
+    $cch .= "'".$application_person."',";
+    $cch .= "'".$application_id."',";
+    $cch .= "'".$application_dep."',";
+    $cch .= "'".$islmt."',";
+    $cch .= "'".$application_tel."')";
+    $insert_sql = $cch;
+
+     $cch = '';
+
+    $overTime_sql = "SELECT * FROM `notes_overtime_state` WHERE id='".$a[$i][1]."' and overTimeDate='".$yds."'";
+    // echo $overTime_sql."<br>";
+     $result=$mysqli->query($overTime_sql);
+     $num_rows = mysqli_num_rows( $result );
+   // echo "$num_rows Rows\n";
+     mysqli_free_result($overTime_rows);
+    $update_rows = $mysqli->query($update_sql);
+    if($num_rows==0){
+    //	echo $update_sql."<br>";
+    //   echo $insert_sql."<br>";
+
+        $insert_rows =$mysqli->query($insert_sql);
+    }
+}*/
+
+$mysqli->close();
+?>
+
+</body>
+</html>
+
