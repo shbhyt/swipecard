@@ -65,20 +65,25 @@ $access = $_SESSION["permission"];
         }
 
 
+    function allCheck(check) {
+        var checkbox = document.getElementsByName("checkbox");
 
-        function allCheck(check) {
-            var checkbox = document.getElementsByName("checkbox");
+        var over_hour = document.getElementsByClassName('overHour');
 
-            if (check.checked) {
-                for (var i = 0; i < checkbox.length; i++) {
+        if (check.checked) {
+            for (var i = 0; i < checkbox.length; i++) {
+                if (over_hour[i].innerHTML == "0") {
+                    checkbox[i].checked = false
+                } else {
                     checkbox[i].checked = "checked";
                 }
-            } else {
-                for (var i = 0; i < checkbox.length; i++) {
-                    checkbox[i].checked = "";
-                }
+            }
+        } else {
+            for (var i = 0; i < checkbox.length; i++) {
+                checkbox[i].checked = "";
             }
         }
+    }
 
         function getValue() {//此為取recordID
             var checkbox = document.getElementsByName("che");

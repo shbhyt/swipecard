@@ -11,27 +11,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="overtime_order_pending_update1.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/overtime_order_pending_update1.php">
+      <file leaf-file-name="overtime_order_pending_show1.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/overtime_order_pending_show1.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="151" column="29" lean-forward="false" selection-start-line="151" selection-start-column="29" selection-end-line="151" selection-end-column="29" />
+            <state relative-caret-position="50">
+              <caret line="62" column="15" lean-forward="true" selection-start-line="62" selection-start-column="15" selection-end-line="62" selection-end-column="15" />
               <folding>
-                <marker date="1510562755549" expanded="true" signature="718:783" ph="select * fro... assistant_data" />
-                <marker date="1510562755549" expanded="true" signature="3380:3405" ph="select depid... a2_dept" />
-                <marker date="1510562755549" expanded="true" signature="3443:3778" ph="SELECT depid... " />
-                <marker date="1510562755549" expanded="true" signature="3501:3552" ph="SELECT depid... a2_dept" />
-                <marker date="1510562755549" expanded="true" signature="3569:3620" ph="SELECT depid... a2_dept" />
-                <marker date="1510562755549" expanded="true" signature="3637:3777" ph="SELECT depid... dept_relation" />
-                <marker date="1510562755549" expanded="true" signature="3691:3742" ph="SELECT depid... a2_dept" />
-                <marker date="1510562755549" expanded="true" signature="3796:3845" ph="SELECT depid... a2_dept" />
-                <marker date="1510562755549" expanded="true" signature="3862:3913" ph="SELECT depid... a2_dept" />
-                <marker date="1510562755549" expanded="true" signature="3862:4058" ph="SELECT depid... " />
-                <marker date="1510562755549" expanded="true" signature="3920:4058" ph="SELECT depid... dept_relation" />
-                <marker date="1510562755549" expanded="true" signature="3974:4025" ph="SELECT depid... a2_dept" />
-                <marker date="1510562755549" expanded="true" signature="4642:4788" ph="update tests... " />
-                <marker date="1510562755549" expanded="true" signature="4803:5115" ph="insert into notes_overtime_state... " />
-                <marker date="1510562755549" expanded="true" signature="6841:6938" ph="SELECT * FRO... notes_overtime_state" />
+                <marker date="1510803571432" expanded="true" signature="39123:40475" ph="select b.id,... testswipecardtime" />
+                <marker date="1510803571432" expanded="true" signature="40733:40859" ph="select class... classno" />
               </folding>
             </state>
           </provider>
@@ -40,18 +27,16 @@
       <file leaf-file-name="overtime_order_pending_Abnormal.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/overtime_order_pending_Abnormal.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="445">
-              <caret line="869" column="14" lean-forward="false" selection-start-line="869" selection-start-column="14" selection-end-line="869" selection-end-column="14" />
+            <state relative-caret-position="-1462">
+              <caret line="752" column="50" lean-forward="true" selection-start-line="752" selection-start-column="50" selection-end-line="752" selection-end-column="50" />
               <folding>
-                <marker date="1510639185391" expanded="true" signature="21110:24504" ph="SELECT t.id,... id" />
-                <marker date="1510639185391" expanded="true" signature="21110:24505" ph="SELECT t.id,... id" />
-                <marker date="1510639185391" expanded="true" signature="21110:24507" ph="SELECT t.id,... id" />
-                <marker date="1510639185391" expanded="true" signature="21110:24584" ph="SELECT t.id,... id" />
-                <marker date="1510639185391" expanded="true" signature="21458:22293" ph="SELECT b.id,... testswipecardtime" />
-                <marker date="1510639185391" expanded="true" signature="21458:22425" ph="SELECT b.id,... testswipecardtime" />
-                <marker date="1510639185391" expanded="true" signature="22461:23390" ph="SELECT b.id,... testswipecardtime" />
-                <marker date="1510639185391" expanded="true" signature="23423:24477" ph="SELECT b.id,... testswipecardtime" />
-                <marker date="1510639185391" expanded="true" signature="24879:25005" ph="select class... classno" />
+                <marker date="1510646400784" expanded="true" signature="21110:24552" ph="SELECT t.id,... id" />
+                <marker date="1510646400784" expanded="true" signature="21110:24553" ph="SELECT t.id,... id" />
+                <marker date="1510646400784" expanded="true" signature="21110:24555" ph="SELECT t.id,... id" />
+                <marker date="1510646400784" expanded="true" signature="21458:22441" ph="SELECT b.id,... testswipecardtime" />
+                <marker date="1510646400784" expanded="true" signature="22477:23422" ph="SELECT b.id,... testswipecardtime" />
+                <marker date="1510646400784" expanded="true" signature="23455:24525" ph="SELECT b.id,... testswipecardtime" />
+                <marker date="1510646400784" expanded="true" signature="24926:25052" ph="select class... classno" />
               </folding>
             </state>
           </provider>
@@ -59,13 +44,19 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>checkbox1</find>
+      <find>spOverHour</find>
+    </findStrings>
+  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/overtime_order_identified_show1.php" />
-        <option value="$PROJECT_DIR$/overtime_order_pending_show1.php" />
         <option value="$PROJECT_DIR$/overtime_order_pending_update1.php" />
         <option value="$PROJECT_DIR$/overtime_order_pending_Abnormal.php" />
+        <option value="$PROJECT_DIR$/overtime_order_pending_show1.php" />
       </list>
     </option>
   </component>
@@ -76,9 +67,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="111" />
-    <option name="y" value="69" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="106" />
+    <option name="y" value="74" />
     <option name="width" value="1420" />
     <option name="height" value="829" />
   </component>
@@ -144,15 +135,15 @@
       <updated>1510293452753</updated>
       <workItem from="1510293454027" duration="18785000" />
       <workItem from="1510617950696" duration="653000" />
-      <workItem from="1510621856242" duration="5873000" />
+      <workItem from="1510621856242" duration="15052000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25311000" />
+    <option name="totallyTimeSpent" value="34490000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="111" y="69" width="1420" height="829" extended-state="1" />
+    <frame x="106" y="74" width="1420" height="829" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2492647" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -262,13 +253,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/overtime_order_pending_show1.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="491">
-          <caret line="334" column="47" lean-forward="false" selection-start-line="334" selection-start-column="47" selection-end-line="334" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/SwipeCallBack.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -286,8 +270,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/overtime_order_pending_update1.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="151" column="29" lean-forward="false" selection-start-line="151" selection-start-column="29" selection-end-line="151" selection-end-column="29" />
+        <state relative-caret-position="187">
+          <caret line="146" column="14" lean-forward="true" selection-start-line="146" selection-start-column="14" selection-end-line="146" selection-end-column="14" />
           <folding>
             <marker date="1510562755549" expanded="true" signature="718:783" ph="select * fro... assistant_data" />
             <marker date="1510562755549" expanded="true" signature="3380:3405" ph="select depid... a2_dept" />
@@ -308,20 +292,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/overtime_order_pending_show1.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="50">
+          <caret line="62" column="15" lean-forward="true" selection-start-line="62" selection-start-column="15" selection-end-line="62" selection-end-column="15" />
+          <folding>
+            <marker date="1510803571432" expanded="true" signature="39123:40475" ph="select b.id,... testswipecardtime" />
+            <marker date="1510803571432" expanded="true" signature="40733:40859" ph="select class... classno" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/overtime_order_pending_Abnormal.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="869" column="14" lean-forward="false" selection-start-line="869" selection-start-column="14" selection-end-line="869" selection-end-column="14" />
+        <state relative-caret-position="-1462">
+          <caret line="752" column="50" lean-forward="true" selection-start-line="752" selection-start-column="50" selection-end-line="752" selection-end-column="50" />
           <folding>
-            <marker date="1510639185391" expanded="true" signature="21110:24504" ph="SELECT t.id,... id" />
-            <marker date="1510639185391" expanded="true" signature="21110:24505" ph="SELECT t.id,... id" />
-            <marker date="1510639185391" expanded="true" signature="21110:24507" ph="SELECT t.id,... id" />
-            <marker date="1510639185391" expanded="true" signature="21110:24584" ph="SELECT t.id,... id" />
-            <marker date="1510639185391" expanded="true" signature="21458:22293" ph="SELECT b.id,... testswipecardtime" />
-            <marker date="1510639185391" expanded="true" signature="21458:22425" ph="SELECT b.id,... testswipecardtime" />
-            <marker date="1510639185391" expanded="true" signature="22461:23390" ph="SELECT b.id,... testswipecardtime" />
-            <marker date="1510639185391" expanded="true" signature="23423:24477" ph="SELECT b.id,... testswipecardtime" />
-            <marker date="1510639185391" expanded="true" signature="24879:25005" ph="select class... classno" />
+            <marker date="1510646400784" expanded="true" signature="21110:24552" ph="SELECT t.id,... id" />
+            <marker date="1510646400784" expanded="true" signature="21110:24553" ph="SELECT t.id,... id" />
+            <marker date="1510646400784" expanded="true" signature="21110:24555" ph="SELECT t.id,... id" />
+            <marker date="1510646400784" expanded="true" signature="21458:22441" ph="SELECT b.id,... testswipecardtime" />
+            <marker date="1510646400784" expanded="true" signature="22477:23422" ph="SELECT b.id,... testswipecardtime" />
+            <marker date="1510646400784" expanded="true" signature="23455:24525" ph="SELECT b.id,... testswipecardtime" />
+            <marker date="1510646400784" expanded="true" signature="24926:25052" ph="select class... classno" />
           </folding>
         </state>
       </provider>

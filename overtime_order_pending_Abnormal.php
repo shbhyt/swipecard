@@ -779,14 +779,14 @@
 								LEFT JOIN `emp_class` c ON b.`ID` = c.`ID`
 									AND c.`emp_date` = SUBSTRING(a.swipecardtime, 1, 10)
 								WHERE
-									DATE_FORMAT(a.swipecardtime, '%Y-%m-%d') = '".$SDate."'
+									DATE_FORMAT(a.swipecardtime, '%Y-%m-%d') = '" . $SDate . "'
                                     and a.swipecardtime2 is null
 									AND b.isOnWork = 0	
-									and a.`WorkshopNo` = '".$WorkshopNo."'
-AND a.`rc_no` = '".$RC_NO."' 
+									and a.`WorkshopNo` = '" . $WorkshopNo . "'
+AND a.`rc_no` = '" . $RC_NO . "' 
 AND a.checkstate IN ('0', '9')
 AND b.costid IN ($cch)
-AND c.`class_no` = '".$Shift."'				
+AND c.`class_no` = '" . $Shift . "'				
 								)
 						UNION
 								(SELECT
@@ -812,14 +812,14 @@ AND c.`class_no` = '".$Shift."'
 								LEFT JOIN `emp_class` c ON b.`ID` = c.`ID`
 								AND c.`emp_date` = SUBSTRING(a.swipecardtime2, 1, 10)
 							WHERE
-								DATE_FORMAT(a.swipecardtime2, '%Y-%m-%d') = '".$SDate."'
+								DATE_FORMAT(a.swipecardtime2, '%Y-%m-%d') = '" . $SDate . "'
 								and a.swipecardtime is null and shift='D'
 								AND b.isOnWork = 0
-								and a.`WorkshopNo` = '".$WorkshopNo."'
-AND a.`rc_no` = '".$RC_NO."' 
+								and a.`WorkshopNo` = '" . $WorkshopNo . "'
+AND a.`rc_no` = '" . $RC_NO . "' 
 AND a.checkstate IN ('0', '9')
 AND b.costid IN ($cch)
-AND c.`class_no` = '".$Shift."'
+AND c.`class_no` = '" . $Shift . "'
 								)
 							UNION
 								(SELECT
@@ -845,18 +845,18 @@ AND c.`class_no` = '".$Shift."'
 								LEFT JOIN `emp_class` c ON b.`ID` = c.`ID`
 								AND c.`emp_date` = SUBSTRING(DATE_ADD(a.swipecardtime2,INTERVAL - 1 DAY), 1, 10)
 							WHERE
-								DATE_FORMAT(a.swipecardtime2, '%Y-%m-%d') = DATE_ADD('".$SDate."',INTERVAL + 1 DAY) 
+								DATE_FORMAT(a.swipecardtime2, '%Y-%m-%d') = DATE_ADD('" . $SDate . "',INTERVAL + 1 DAY) 
 								and a.swipecardtime is null and shift='N'
 								AND b.isOnWork = 0	
-								and a.`WorkshopNo` = '".$WorkshopNo."'
-AND a.`rc_no` = '".$RC_NO."' 
+								and a.`WorkshopNo` = '" . $WorkshopNo . "'
+AND a.`rc_no` = '" . $RC_NO . "' 
 AND a.checkstate IN ('0', '9')
 AND b.costid IN ($cch)
-AND c.`class_no` = '".$Shift."'							
+AND c.`class_no` = '" . $Shift . "'							
 							) 
 							) t 
 
-								" ;
+								";
 
 
                                         
